@@ -21,6 +21,11 @@ Suivez ces étapes pour installer le projet localement :
 # 1. Cloner le repository ou copier les fichiers
 # 2. Installer les dépendances
 npm install
+npm install mongoose
+npm install dotenv
+npm install nodemon
+npm install express
+npm install mongodb
 ```
 
 ---
