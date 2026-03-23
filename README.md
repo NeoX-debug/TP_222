@@ -1,62 +1,84 @@
-API de Blog - INF222 TAF 1
-Ce projet est une API Backend développée dans le cadre du module INF222 - EC1 : Programmation Web. L'objectif est de gérer les articles d'un blog via des endpoints RESTful, en utilisant Node.js, Express et MongoDB.
+# 📝 API Blog - TP 222
 
-🛠️ Installation et Configuration
-Suivez ces étapes pour installer et lancer le projet sur votre machine locale :
-Installer les dépendances :
-        Body JSON:
-        npm install dotenv
-        npm install express
-        npm install mongoose
-        npm install nodemon
+Une API REST robuste construite avec **Node.js**, **Express** et **MongoDB (Mongoose)** pour la gestion d'articles de blog.
 
-Configurer les variables d'environnement :
-Créez un fichier .env à la racine du projet et ajoutez votre chaîne de connexion MongoDB :
+---
 
-Ajouter un script pour lancer le serveur:
-        Body JSON:
-        "scripts": {
-            "server": "nodemon backend/server.js"
-        }
+## 🚀 Fonctionnalités
 
-Lancer le serveur :
+- **CRUD Complet** : Créer, Lire, Modifier et Supprimer des articles.
+- **Recherche Avancée** : Recherche par mots-clés dans les titres.
+- **Validation des Données** : IDs numériques obligatoires et champs requis.
+- **Gestion d'Erreurs** : Réponses claires (400, 404) pour les requêtes mal formulées.
 
-Le serveur sera accessible sur http://localhost:3000.
+---
 
-🚀 Endpoints de l'API
-L'API expose les points de terminaison suivants pour la ressource Article :
+## 📦 Installation
 
-📝 Exemples d'utilisation
-Créer un article (POST)
-URL : http://localhost:3000/api/articles
+Suivez ces étapes pour installer le projet localement :
 
-Corps de la requête (JSON) :
+```bash
+# 1. Cloner le repository ou copier les fichiers
+# 2. Installer les dépendances
+npm install
+```
 
-Rechercher un article (GET)
-URL : http://localhost:3000/api/articles/search?query=premier
+---
 
-🚦 Codes de Réponse HTTP utilisés
-Conformément aux bonnes pratiques de développement d'API, les codes suivants sont retournés :
+## ⚙️ Configuration
 
-200 [OK] : La requête a réussi (lecture, modification, suppression).
+Créez un fichier `.env` à la racine du projet et ajoutez votre URI MongoDB :
 
-201 [Created] : L'article a été créé avec succès.
+```env
+MONGO_URI=mongodb://127.0.0.1:27017/tp_222
+```
 
-400 [Bad Request] : La requête est mal formée (ex: titre ou auteur manquant).
+---
 
-404 [Not Found] : L'article demandé n'existe pas dans la base de données.
+## 🏃 Lancement du serveur
 
-500 [Internal Server Error] : Une erreur est survenue au niveau du serveur.
+Pour lancer le serveur avec **nodemon** (redémarrage automatique) :
 
-📂 Structure du Projet
-Le code est organisé selon une architecture MVC simplifiée pour une meilleure maintenance :
+```bash
+npm run server
+```
 
-models/ : Définition du schéma de données (Mongoose).
+Le serveur sera accessible sur : `http://localhost:5000`
 
-controllers/ : Logique métier et manipulation des données.
+---
 
-routes/ : Définition des chemins et méthodes HTTP.
+## 🛠️ Points d'accès API (Endpoints)
 
-server.js : Point d'entrée de l'application.
+### Articles
 
-Projet réalisé par [Ton Nom] - 2026
+| Méthode | Endpoint | Description |
+| :--- | :--- | :--- |
+| **GET** | `/api/articles` | Récupère tous les articles |
+| **GET** | `/api/articles/:id` | Récupère un article par son ID |
+| **GET** | `/api/articles/search?query=...` | Recherche des articles par titre |
+| **POST** | `/api/articles` | Crée un nouvel article |
+| **PUT** | `/api/articles/:id` | Modifie un article existant |
+| **DELETE** | `/api/articles/:id` | Supprime un article spécifique |
+| **DELETE** | `/api/articles` | Supprime TOUS les articles |
+
+---
+
+## 🧪 Exemple de JSON pour POST/PUT
+
+```json
+{
+  "id": 1,
+  "titre": "Mon premier article",
+  "auteur": "Forlan",
+  "categorie": "Technologie"
+}
+```
+
+---
+
+## 🛡️ Gestion des Erreurs
+
+- **400 Bad Request** : Si l'ID n'est pas un nombre ou si la route est inconnue.
+- **404 Not Found** : Si l'article demandé n'existe pas.
+- **201 Created** : Confirmation de création d'article.
+- **200 OK** : Confirmation du bon déroulement du processus
